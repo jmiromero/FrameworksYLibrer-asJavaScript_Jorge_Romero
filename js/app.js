@@ -37,14 +37,14 @@ function colorBlink(selector) {				//animacion del titulo
 }
 
 
-function getRandomInt(min, max) {
+function getRandomInt(min, max) {			//Genera Variables con numeros aleatorios
 	min = Math.ceil(min);
 	max = Math.floor(max);
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
 
-function giveCandyArrays(arrayType, index) {
+function giveCandyArrays(arrayType, index) {	//Obtiene un arreglo de imagenes
 
 	var candyCol1 = $('.col-1').children();
 	var candyCol2 = $('.col-2').children();
@@ -79,7 +79,6 @@ function candyRows(index) {
 	var candyRow = giveCandyArrays('rows', index);
 	return candyRow;
 }
-
 
 function candyColumns(index) {
 	var candyColumn = giveCandyArrays('columns');
@@ -198,7 +197,7 @@ function deleteHorizontal(candyPosition, candyRow) {
 	}
 }
 
-function setScore(candyCount) {
+function setScore(candyCount) {			//Calcula el puntaje y lo agrega al Score
 	var score = Number($('#score-text').text());
 	switch (candyCount) {
 		case 3:
@@ -321,21 +320,21 @@ function deletesCandyAnimation() {
 	disableCandyEvents();
 	$('img.delete').effect('pulsate', 400);
 	$('img.delete').animate({
-			opacity: '0'
-		}, {
-			duration: 300
-		})
-		.animate({
-			opacity: '0'
-		}, {
-			duration: 400,
-			complete: function () {
-				deletesCandy()
-					.then(checkBoardPromise)
-					.catch(showPromiseError);
-			},
-			queue: true
-		});
+		opacity: '0'
+	}, {
+		duration: 300
+	})
+	.animate({
+		opacity: '0'
+	}, {
+		duration: 400,
+		complete: function () {
+			deletesCandy()
+				.then(checkBoardPromise)
+				.catch(showPromiseError);
+		},
+		queue: true
+	});
 }
 
 function showPromiseError(error) {
